@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block login %}
+<title>Login</title>
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <button type="submit">Login</button>
+    <br>
+    
+    {% if error %}
+    {{error}}
+    <br>
+    <a href="{% url 'signin' %}">sign in</a>
+    {% endif %}
+    {{message}}
+</form>
+    {% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    
+</body>
+</html>

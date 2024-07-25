@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{%block index%}
+<title>Blogs</title>
+<h1>Blogs</h1>
+<div>
+  <a class="corner-button" href="{% url 'addblog' %}">Add</a>
+</div>
+<div>
+  <a class="home-button" href="{% url 'home' %}">home</a>
+</div>
+
+{% for blog in Blogs %}
+<table style="width: 400px">
+  <tr>
+    <th>title</th>
+    <th>content</th>
+    <th>author</th>
+    <th>likes</th>
+  </tr>
+  <tr>
+    <td>{{blog.title}}</td>
+    <td>{{blog.content}}</td>
+    <td>{{blog.author.full_name}}</td>
+    <td>{{blog.like_count}}</td>
+    <td>
+      <form method="POST" action="{% url 'like' %}?blog_id={{blog.blog_ID}}">
+        {% csrf_token %}
+        <!-- <button><a>like</a></button> -->
+        <input type="hidden" name="blog_id" value="{{ blog.blog_ID }}" />
+        <input type="hidden" name="_method" value="PUT" />
+        <button type="submit">Like/Unlike</button>
+      </form>
+    </td>
+  </tr>
+</table>
+{% endfor %} {%endblock %}

@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block home %}
+    <title>home</title>
+    {% if user.is_authenticated %}
+    <h2>Hi {{ user.full_name }} </h2>
+    <br>
+    <a class="first-button" href="{% url 'logout' %}">logout</a>
+    <br>
+    <a class="second-button" href="{% url 'blogs' %}">blogs</a>
+    {% else %}
+    <p>you are not logged</p>
+    <a class="first-button" href="{% url 'login' %}">login</a>
+    <br>
+    <a class="second-button" href="{% url 'signin' %}">sign in</a>
+    {% endif %}
+
+{% endblock %}
